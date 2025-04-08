@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from backend.db import get_db_connection
 
 login= Blueprint('login', __name__)
@@ -17,11 +17,13 @@ def login_view():
         JOIN auth a ON u.id = a.user_id
         WHERE u.username = %s
         """, (user,))
-        user = cur.fetchone()
+        user_data = cur.fetchone()
         cur.close()
         conn.close()
         
-        if user and user[3] == password:
+        if user_data and user_data[3] == password:
+            session['user_id'] = user_data[0]
+            session['username'] = user_data[1]
             return redirect(url_for('homepage.home'))
         else:
             flash('Credenciales incorrectas')
