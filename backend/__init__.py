@@ -6,6 +6,7 @@ from .routes.homepage import homepage
 from .routes.register import register
 from .routes.logout import logout
 
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)

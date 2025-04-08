@@ -1,6 +1,7 @@
 from backend import create_app
+from dotenv import load_dotenv
 
-# Crea la instancia de Flask usando la función factory
+load_dotenv()
 app = create_app()
 
 if __name__ == '__main__':

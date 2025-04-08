@@ -3,11 +3,12 @@ from backend.db import get_db_connection
 from werkzeug.security import check_password_hash
 
 login= Blueprint('login', __name__)
-
 index = Blueprint('index', __name__)
+
 @index.route('/', methods=['GET', 'POST'])
 def index_view():
     return render_template('index.html')
+
 
 @login.route('/login', methods=['GET', 'POST'])
 def login_view():
